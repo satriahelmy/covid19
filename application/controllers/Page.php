@@ -18,7 +18,7 @@ class Page extends CI_Controller {
         $this->load->view('footer_view');
     }
 
-    public $api_url = "https://covid19.mathdro.id/api";
+    public $api_url = "https://indonesia-covid-19.mathdro.id/api/";
 
     public function index()
     {
@@ -32,23 +32,8 @@ class Page extends CI_Controller {
         $url = $this->api_url;
         $dashboard_data = json_decode($this->exec($url));
         $data['data'] = $dashboard_data;
-        $confirmed_array = array();
-        $recovered_array = array();
-        $deaths_array = array();
-
-        $countries = json_decode($this->exec($url."/countries"));
-        $confirmed = json_decode($this->exec($url."/confirmed"));
-        $recovered = json_decode($this->exec($url."/recovered"));
-        $deaths = json_decode($this->exec($url."/deaths"));
-
-        foreach ($confirmed as $row) 
-        {
-            $array_confirmed[$row->iso3] = 
-        }
-
-        foreach ($confirmed as $key => $value) {
-            # code...
-        }
+        array_push($page, array('view' =>  "dashboard/dashboard_view", 'data' => $data));
+        $this->init_page($page);
         
     }
 
